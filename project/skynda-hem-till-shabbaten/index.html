@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.typekit.net/zkg5ejp.css" />
+    <title>Shabbat</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: neuzeit-grotesk, sans-serif;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      section {
+        min-height: 100vh;
+        width: 100vw;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      .bold {
+        font-family: neuzeit-grotesk, sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @media (max-width: 999px) {
+        .parallax {
+          perspective: 1px;
+          overflow-x: hidden;
+          overflow-y: scroll;
+          background-color: #e4b1ba;
+          position: relative;
+          overscroll-behavior: auto;
+          z-index: 0;
+        }
+        .desktop {
+          display: none;
+        }
+      }
+
+      @media (min-width: 1000px) {
+        .parallax {
+          display: none;
+        }
+        .desktop {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .parallax-group {
+        position: relative;
+        transform-style: preserve-3d;
+        overscroll-behavior: auto;
+      }
+
+      .parallax-layer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .layer img {
+        top: 0;
+        left: 0;
+        width: 100vw;
+      }
+
+      .layer1 {
+        transform: translateZ(-4px) scale(5);
+      }
+
+      .layer2 {
+        transform: translateZ(-3px) scale(4);
+      }
+
+      .layer3 {
+        transform: translateZ(-2px) scale(3);
+      }
+
+      .layer.layer4 {
+        transform: translateZ(-1px) scale(2);
+        top: 50vh;
+      }
+
+      .layer.layer5 {
+        transform: translateZ(0px);
+        top: 170vh;
+      }
+
+      .layer6 {
+        transform: translateZ(-2px) scale(3);
+      }
+
+      .layer6 img {
+        width: 80%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .video01 {
+        z-index: 5;
+      }
+
+      .video02 {
+        z-index: 4;
+      }
+
+      .video03 {
+        z-index: 3;
+      }
+
+      .video04 {
+        z-index: 2;
+      }
+
+      .video05 {
+        z-index: 1;
+      }
+
+      video {
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        position: absolute;
+        background-color: white;
+      }
+
+      .restart {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .videos {
+        position: absolute;
+        top: 300vh;
+        background-color: #e4b1ba;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="desktop">
+      <h1>The website only works on mobile</h1>
+    </section>
+    <section class="parallax" id="parallax">
+      <div class="parallax-group">
+        <div class="parallax-layer layer layer1">
+          <img src="./assets/bg01.png" alt="" />
+        </div>
+        <div class="parallax-layer layer layer2">
+          <img src="./assets/bg02.png" alt="" />
+        </div>
+        <div class="parallax-layer layer layer3">
+          <img src="./assets/bg03.png" alt="" />
+        </div>
+        <div class="parallax-layer layer layer4">
+          <img src="./assets/bg04.PNG" alt="" />
+        </div>
+        <div class="parallax-layer layer layer5">
+          <img src="./assets/bg05.PNG" alt="" />
+        </div>
+        <div class="parallax-layer layer layer6">
+          <img src="./assets/LOGO_BLACK.png" alt="" />
+        </div>
+      </div>
+
+      <section class="videos">
+        <video
+          src="./assets/shabbat1.mp4#t=0.1"
+          webkit-playsinline
+          playsinline
+          class="video01"
+          id="video"
+        ></video>
+        <video
+          src="./assets/shabbat2.mp4#t=0.1"
+          webkit-playsinline
+          playsinline
+          class="video02"
+          id="video"
+        ></video>
+        <video
+          src="./assets/Shabbat3.mp4#t=0.1"
+          webkit-playsinline
+          playsinline
+          class="video03"
+          id="video"
+        ></video>
+        <div class="restart video04" id="restart">
+          <h2 class="bold">
+            Klicka för att börja<br />
+            om från början.<br />
+            Se video på vimeo
+          </h2>
+        </div>
+      </section>
+    </section>
+  </body>
+
+  <script>
+    let parallax = document.querySelector("#parallax");
+    let videos = document.querySelectorAll("#video");
+
+    parallax.addEventListener("scroll", function (e) {
+      let elem = e.currentTarget;
+      if (elem.scrollHeight - elem.scrollTop == window.innerHeight)
+        e.currentTarget.style.overflow = "hidden";
+    });
+
+    window.addEventListener("scroll", function (e) {
+      if (parallax.getBoundingClientRect().top <= -window.innerHeight)
+        parallax.style.display = "none";
+    });
+
+    videos.forEach(function (vidBtn) {
+      vidBtn.addEventListener("click", playVideo);
+    });
+
+    function playVideo(event) {
+      event.srcElement.play();
+      event.srcElement.addEventListener("ended", function (el) {
+        el.srcElement.style.display = "none";
+      });
+    }
+
+    document.querySelector("#restart").addEventListener("click", function () {
+      location.reload();
+    });
+  </script>
+</html>
