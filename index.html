@@ -1,50 +1,517 @@
-﻿<!doctype html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>fönster.site</title>
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
+    <title>fönster.site</title>
 
-body, h1, p {
-	color: white;
-	font-size: 4.7vw;
-	line-height: 1em;
-	padding: 0;
-	margin: 1vw;
-	font-weight: normal;
-	background-color: black;
-	font-family: 'times', 'times new roman';
-}
+    <style>
+      @font-face {
+        font-family: "Maxi Round Edu";
+        src: url("./assets/fonts/ABCMaxiRoundEdu-Regular.woff") format("woff");
+      }
 
-a, a:visited {
-	color: lightblue;
-	text-decoration: none;
-}
+      @font-face {
+        font-family: "Social Edu";
+        src: url("./assets/fonts/ABCSocialEdu-Regular.woff") format("woff");
+      }
 
-h1 {
-	font-weight: bold;
-}
+      body::-webkit-scrollbar {
+        display: none;
+      }
 
-img {
-	width: 97vw;
-}
+      body {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
 
-</style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
+      body {
+        position: relative;
+      }
 
-</head>
+      .spacing {
+        padding: 17px 10px 80px;
+      }
 
+      h1,
+      h2 {
+        font-family: "Maxi Round Edu", Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        width: 100%;
+        cursor: pointer;
+        z-index: 2;
+      }
 
-<body>
+      @media (max-width: 999px) {
+        h1,
+        h2 {
+          /* Change if the number of project changes */
+          font-size: 5.5vh;
+          line-height: 5.5vh;
+          margin-top: -5px;
+        }
+      }
 
-<img src="assets/contentslider.jpg">
+      @media (min-width: 1000px) {
+        h1,
+        h2 {
+          /* Change if the number of project changes */
+          padding-top: 30px;
+          font-size: 12vh;
+          line-height: 12.5vh;
+        }
+      }
 
-<h1>Fönster: 9 digitala guider till Judiska museet</h1>
-<P>Hemsidan kommer publiceras i samband med vernissaget den 27 oktober 2022, klockan 16.00. </P>
-<P>Välkommen åter!</p>
-<p><a href="https://www.beckmans.se">Beckmans designhögskola</a> och <a href="https://www.judiskamuseet.se">Judiska museet</a></p>
+      p,
+      a {
+        font-family: "Social Edu", Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 28.25px;
+        padding: 10px 0;
+        color: black;
+      }
+      a {
+        font-weight: bold;
+      }
 
+      .center {
+        width: 100%;
+        text-align: center;
+      }
 
-</body>
+      .right {
+        width: 100%;
+        text-align: right;
+      }
+
+      @media (max-width: 999px) {
+        h1,
+        h2 {
+          padding: 10px 18px;
+        }
+
+        .text-wrapper {
+          padding: 20px 18px;
+          max-width: 1000px;
+        }
+
+        .text-wrapper.center {
+          text-align: left;
+        }
+
+        .text-wrapper.right {
+          text-align: right;
+        }
+
+        img {
+          padding: 30px 18px 10px;
+          width: 100%;
+        }
+      }
+
+      @media (min-width: 1000px) {
+        .spacing {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        h1,
+        h2 {
+          padding: 10px 18px;
+          grid-column: 1 / 3;
+        }
+
+        .text-wrapper {
+          padding: 50px 18px 35px;
+          max-width: 785px;
+          grid-column: 2 / 3;
+        }
+
+        .text-wrapper.center {
+          text-align: left;
+        }
+
+        .text-wrapper.right {
+          text-align: right;
+        }
+
+        img {
+          margin: 50px 18px 35px;
+          padding: 0 18px;
+          width: 80%;
+          grid-column: 1 / 2;
+        }
+      }
+
+      .projects {
+        z-index: 1;
+      }
+
+      article {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        background-color: white;
+        transition: max-height 0.25s ease-out;
+        z-index: 1;
+      }
+
+      article.active {
+        max-height: 5000px;
+        height: 100%;
+        transition: max-height 0.5s ease-in;
+      }
+
+      @media (max-width: 999px) {
+        article {
+          /* Change if the number of project changes */
+          max-height: 10vh;
+        }
+      }
+
+      @media (min-width: 1000px) {
+        article {
+          /* Change if the number of project changes */
+          max-height: 20vh;
+        }
+      }
+
+      article::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        background-color: white;
+        z-index: -1;
+        background: linear-gradient(
+          rgba(66, 61, 57, 1) 0%,
+          rgba(66, 61, 57, 0.3) 50%,
+          rgba(66, 61, 57, 0.15) 65%,
+          rgba(66, 61, 57, 0.075) 75.5%,
+          rgba(66, 61, 57, 0.037) 82.85%,
+          rgba(66, 61, 57, 0.019) 88%,
+          rgba(66, 61, 57, 0) 100%
+        );
+        transform: rotate(180deg);
+        pointer-events: none;
+      }
+
+      img {
+        width: 100;
+        height: auto;
+        object-fit: fill;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="projects">
+      <article>
+        <div class="spacing">
+          <h1 class="center">fönster</h1>
+          <div class="text-wrapper center">
+            <p><strong>Peter Ström</strong></p>
+            <p>
+              För tredje året i rad samarbetar Beckmans designhögskola med
+              Judiska museet.
+              <br /><br />
+              Genom smartphone-anpassade, digitala guider ger studenter i
+              Visuell kommunikation ytterligare fördjupning till den judiska
+              berättelsen i Sverige.
+              <br /><br />
+              Nio alternativa vägar genom berättelser relaterade till judendomen
+              i Sverige finns via museet tillgängliga att läsa, lyssna på,
+              uppleva och interagera med direkt i varje besökares smartphone.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="right">Det judiska Södermalm</h2>
+          <div class="text-wrapper right">
+            <p>
+              <strong
+                >Eliot Siekkinen Lydeén<br />
+                Lova Rehle
+              </strong>
+            </p>
+            <p>
+              En stadsvandring i ny tappning. I den här guiden tas du med på en
+              audiovisuell resa genom Södermalms judiska historia. Med telefonen
+              som fönster mot historien får du besöka fem platser som var
+              viktiga för Stockholms ortodoxa judar under slutet av 1800-talet
+              och början av 1900-talet. Dessa platser har genom skriftliga
+              återgivelser och fotografier återskapats i form av
+              tredimensionella visualiseringar. Tanken är att dessa ska erbjuda
+              ytterligare ett lager i den komplexa berättelsen om den judiska
+              gemenskapen i Stockholm, och ta oss ett steg närmare historien.
+            </p>
+
+            <a
+              href="https://open.spotify.com/playlist/5ZLesNw6NHUMdWlpKDicXl?si=a3c88770c63546c7"
+              >Besök guiden</a
+            >
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2>Glasbråket</h2>
+          <img src="./assets/images/glasbraket.jpg" alt="" />
+          <div class="text-wrapper">
+            <p><strong>Calle Elf</strong></p>
+            <p>
+              Guiden leder besökaren genom museet på en spekulativ utredning som
+              tar avstamp i en händelse som utspelade sig på slutet av
+              1700-talet. Vid varje stopp utvecklas historien mer och mer.
+            </p>
+            <a href="https://glasbraket.fonster.site/">Besök guiden</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="right">Cupido 3</h2>
+          <img src="./assets/images/Cupido3.jpg" alt="" />
+          <div class="text-wrapper right">
+            <p>
+              <strong>
+                Anna Ericsson Hybbinette <br />
+                Ida Gustafsson<br />
+                Louise Gistrand <br />
+              </strong>
+            </p>
+            <p>
+              Cupido 3 är en digital tidslinje där vi tas med på en illustrativ
+              historieguide om byggnaden som Judiska museet ligger i. Huset,
+              vars fastighetsbeteckning är Cupido 3, har en lång historia som
+              sträcker sig ända tillbaka till medeltiden och har sedan dess
+              inrymt allt från polisstation till synagoga och sjömanskapell.
+              <br /><br />
+              Swipea dig bakåt i tiden för att följa med på husets historieresa
+              och lär dig mer om de olika epokerna genom att trycka upp
+              informationsbladen.
+            </p>
+            <a href="http://cupido3.fonster.site/">Besök guiden</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="center">Trawling the hyperlinks</h2>
+          <img src="./assets/images/Trawling-the-hyperlinks.jpg" alt="" />
+          <div class="text-wrapper center">
+            <p>
+              <strong>
+                Edward Ström <br />
+                Julian Redaelli<br />
+              </strong>
+            </p>
+            <p>
+              Trawling the hyperlinks är en nybörjarguide till nätsurfande kring
+              den judiska kulturen och historien. Genom vårt internetbaserade
+              utforskande av den judiska traditionen skapas en mindmap av
+              sammankopplingar som läsaren får navigera fritt. Guiden är som en
+              ”let's play” av ett webbbaserat utforskande av den information som
+              existerar om judendomen online.
+              <br /><br />
+              En av de definierande aspekterna av internet är det icke-linjära
+              och icke-hierarkiska sätt som information presenteras. Allting och
+              ingenting är tillgängligt för oss på samma gång. I guiden
+              återberättar vi vårt egna navigerande genom internets hyperlänkar
+              i ett format som närmast kan kallas hyperfiktion; där vi fritt och
+              nästan associativt utforskar judendomen samtidigt som vi ställer
+              oss frågor kring internets informationsbärande struktur och
+              uppbyggnad.
+              <br /><br />
+              Trawling the hyperlinks kan ses som en metod för att organisera
+              den informationen som ständigt är tillgänglig genom internet. Det
+              är ett omvandlande från lös data till en kulturell artefakt och
+              samtidigt en presentation av research genom ett format som det
+              sällan presenteras genom – den hyperfiktiva rollspelsboken.
+            </p>
+            <a href="https://trawlingthehyperlinks.cargo.site/">Besök guiden</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="right">Skynda hem till Shabbaten!</h2>
+          <img src="./assets/images/skynda-hem-till-shabbaten.jpg" alt="" />
+          <div class="text-wrapper right">
+            <p>
+              <strong
+                >Stephanie Sierau<br />
+                Oskar Hannu
+              </strong>
+            </p>
+            <p>
+              ”Skynda hem till shabbaten!” är en animerad interaktiv saga för
+              barn! Den handlar om sexåriga Levi som längtar efter att äntligen
+              få komma hem och fira shabbat. Men kommer han hinna innan solen
+              går ner?
+              <br /><br />
+              ”More than Jews have kept Shabbat, Shabbat has kept the Jews”
+              skrev författaren och tänkaren Ahad Ha'am. En rolig och tänkvärd
+              sammanfattning av shabbat, som förutom att vara en uråldrig
+              tradition också kan tolkas som världens första fredagsmys! Vi
+              ville skildra shabbat på ett lekfullt och inbjudande sätt, med
+              fokus på värme, gemenskap - och musik! Musiken är inspelad och
+              producerad just för detta verk.
+              <br /><br />
+              Sagan finns även att se på som en film (utan interaktivitet) samt
+              att lyssna på som låt!
+            </p>
+            <a href="/project/skynda-hem-till-shabbaten/">Besök guiden</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="">Chavruta</h2>
+          <img src="./assets/images/chavruta.jpg" alt="" />
+          <div class="text-wrapper">
+            <p><strong>Viktoria Hultman</strong></p>
+            <p>
+              Chavruta betyder partnerskap och är närmast att likna vid en
+              metod. Det är sättet man har använt sig av i tusentals år för att
+              studera de judiska källorna. Man sitter i par och läser och
+              diskuterar. Att studera blir då att vara i dialog med en jämbördig
+              partner. <br />
+              <br />
+              Att lära sig av olika religioner och kulturer är givande. Vinsten
+              med att vara öppen och nyfiken är att man kan lära sig nya sätt
+              att ta sig an situationer och nya vinklar att se världen ur.
+              Chavruta fångade mitt intresse direkt när vi skulle lära oss mer
+              om judendomen i denna kurs. Jag valde att låta två av mina vänner
+              testa på Chavruta. Det intressanta är inte vad de säger i sin
+              konversation, eftersom det inte är deras åsikter jag vill att ni
+              ska gå härifrån med, utan insikten av att vi kan bli bättre på hur
+              vi diskuterar och bli bättre på att inte hålla med varandra men
+              ändå ta till oss varandras perspektiv och insikter.
+            </p>
+
+            <a href="https://vimeo.com/763754553">Besök guiden</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="center">Familjen Lamms mönster</h2>
+          <img src="./assets/images/familjen_Lamm.jpg" alt="" />
+          <div class="text-wrapper center">
+            <p><strong>Wasim Harwill </strong></p>
+            <p>
+              De så kallade ”ryska” tröjorna bevarades då de troddes vara ryska
+              tyger, som vi svenskar tog i krigsbyte och sparade för sin
+              militära koppling. När de i själva verket var svenska tyger för
+              sårade soldater och trycktes vid Lamms kattunfabrik Blecktornet,
+              söder om Stockholm 1808.
+              <br /><br />
+              Med detta videoverk vill jag belysa familjen Lamms hantverk och
+              lyfta fram deras grafiska mönster, som då revolutionerade en hel
+              industri i Sverige. Genom att sätta dem i en ny kontext där deras
+              tidlösa mönster får ta plats rumsligt och digitalt, 214 år senare,
+              hoppas jag att vi kan se familjen Lamms mönster för de konstverk
+              de faktiskt är.
+              <br /><br />
+              Musik av Eliot Axelsson.
+            </p>
+
+            <a href="https://vimeo.com/763986726">Besök guiden</a>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="">
+            Mordet på den judiske gårdfari-<br />handlaren (AI-version)
+          </h2>
+          <img src="./assets/images/gardfari-handlaren.jpg" alt="" />
+          <div class="text-wrapper">
+            <p>
+              <strong
+                >Axel Wahl<br />
+                Fredrik Westin
+              </strong>
+            </p>
+            <p>
+              Vi har läst den sanna berättelsen ”Mordet på den judiske
+              gårdfari-handlaren” från boken "Judiska gårdfarihandlaren i
+              Sverige . Berättelsen som utspelar sig år 1871 saknade bilder och
+              vi ville utforska hur man kan återuppliva de gamla skildringarna
+              genom ny teknik. Därför har vi skapat bilder till berättelsen
+              genom artificiell intelligens.
+              <br /><br />
+              Vi har låtit bildgeneratorn DALL-E skapa bilder baserat på våra
+              visuella beskrivningar hämtade från berättelsen.
+              <br /><br />
+              Berättelsens första bild visar en gård där morgonsolen lyser över
+              två lador. För att få fram den bilden skrev vi in ”Sunny morning
+              on a farm in 1871 photographed with a digital camera in Sweden”.
+              <br /><br />
+              Vår nya version av berättelsen ”Mordet på den judiske
+              gårdfari-handlaren” beställs och upplevs direkt genom
+              mobiltelefonens mail-app.
+            </p>
+
+            <a
+              href="mailto:axelochfredrik@gmail.com?subject=Mordet%20p%C3%A5%20den%20judiske%20g%C3%A5rdfarihandlaren%20(AI-version)&body=I%20och%20med%20att%20jag%20skickar%20iv%C3%A4g%20detta%20mail%20bekr%C3%A4ftar%20jag%20min%20best%C3%A4llning%20av%20den%20digitala%20ber%C3%A4ttelsen%20%22Mordet%20p%C3%A5%20den%20judiske%20g%C3%A5rdfarihandlaren%20(photographed%20with%20a%20digital%20camera)%22.%0A%0AJag%20%C3%A4r%20medveten%20om%20att%20texten%C2%A0kommer%20fr%C3%A5n%C2%A0boken%C2%A0%E2%80%9DJudiska%20g%C3%A5rdfarihandlare%20i%20Sverige%E2%80%9D,%20kapitel%20%E2%80%9DMordet%20p%C3%A5%20den%20judiske%20g%C3%A5rdfarihandlaren%E2%80%9D%C2%A0och%20%C3%A4r%20skriven%20av%20Arne%20Blom.%20Boken%20%C3%A4r%20utgiven%C2%A0av%20Judiska%C2%A0museet%20i%20Stockholm%20%C3%A5r%201996.%0A%0AJag%20k%C3%A4nner%20till%20att%20bilderna%20i%20ber%C3%A4ttelsen%20%C3%A4r%20skapade%20med%20AI-teknik%20och%20%C3%A4r%20d%C3%A4rf%C3%B6r%20inte%20verkliga.%20Bilderna%20har%20endast%20anv%C3%A4nts%20f%C3%B6r%20att%20illustrera%20ber%C3%A4ttelsen%20p%C3%A5%20ett%20s%C3%A4tt%20som%20inte%20var%20m%C3%B6jligt%20p%C3%A5%20tiden%20d%C3%A5%20h%C3%A4ndelsen%20utspelade%20sig.%0A%0A%0A
+				"
+              >Besök guiden</a
+            >
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="spacing">
+          <h2 class="right">Walter</h2>
+          <img src="./assets/images/Walter.jpg" alt="" />
+          <div class="text-wrapper right">
+            <p><strong>Anna Eriksson </strong></p>
+            <p>
+              1938-1939 flyr 500 judiska barn till Sverige med Kindertransport,
+              Walter 6,5 år var ett av dessa barn och med sig har han en väska
+              med lite kläder och sin plyschhund. <br /><br />
+              Det här är en interaktiv berättelse som kontextualiserar de
+              föremål som då tillhörde Walter Israel men idag finns på Judiska
+              museet. Texterna är baserade på en intervju med hans syster, Eva
+              Lecerof, och hennes minnen av vad som hände deras familj.
+            </p>
+
+            <a href="https://www.walterssaker.com/">Besök guiden</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      //Make the articles open
+      document.querySelectorAll("h1, h2").forEach(function (title) {
+        title.addEventListener("click", function (el) {
+          el.srcElement.parentElement.parentElement.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
 </html>

@@ -32,7 +32,7 @@
         font-style: normal;
       }
 
-      @media (max-width: 999px) {
+      @media (max-width: 799px) {
         .parallax {
           perspective: 1px;
           overflow-x: hidden;
@@ -47,7 +47,7 @@
         }
       }
 
-      @media (min-width: 1000px) {
+      @media (min-width: 800px) {
         .parallax {
           display: none;
         }
@@ -55,6 +55,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          flex-direction: column;
         }
       }
 
@@ -82,6 +83,7 @@
 
       .layer1 {
         transform: translateZ(-4px) scale(5);
+        top: 30vw;
       }
 
       .layer2 {
@@ -90,16 +92,17 @@
 
       .layer3 {
         transform: translateZ(-2px) scale(3);
+        top: 230vw;
       }
 
       .layer.layer4 {
         transform: translateZ(-1px) scale(2);
-        top: 50vh;
+        top: 600vw;
       }
 
       .layer.layer5 {
         transform: translateZ(0px);
-        top: 170vh;
+        top: 800vw;
       }
 
       .layer6 {
@@ -115,72 +118,135 @@
       }
 
       .video01 {
-        z-index: 5;
+        z-index: 20;
       }
 
       .video02 {
-        z-index: 4;
+        z-index: 19;
       }
 
       .video03 {
-        z-index: 3;
+        z-index: 18;
       }
 
       .video04 {
-        z-index: 2;
+        z-index: 17;
       }
 
       .video05 {
-        z-index: 1;
+        z-index: 16;
+      }
+
+      .video06 {
+        z-index: 15;
+      }
+
+      .video07 {
+        z-index: 14;
+      }
+
+      .video08 {
+        z-index: 13;
+      }
+
+      .video09 {
+        z-index: 12;
       }
 
       video {
         right: 0;
         bottom: 0;
-        width: 100%;
-        height: 100%;
         object-fit: fill;
         position: absolute;
         background-color: white;
+        width: 100%;
+        height: 100%;
+      }
+
+      @media (max-width: 600px) {
+        .videos {
+          top: 1250vw;
+          height: 100vh;
+        }
+      }
+
+      @media (min-width: 601px) {
+        .videos {
+          height: 100vh;
+          top: 1300vw;
+        }
       }
 
       .restart {
-        width: 100vw;
-        height: 100vh;
         position: absolute;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .desktop h1 {
+        margin: 20px;
+      }
+      .desktop button,
+      .desktop a,
+      .restart button,
+      .restart a {
+        font-size: 24px;
+        font-weight: bold;
+        color: #141d46;
+        margin: 20px;
+        border: 6px solid #141d46;
+        background: none;
+        text-decoration: none;
+        padding: 13px 24px;
       }
 
       .videos {
         position: absolute;
-        top: 300vh;
         background-color: #e4b1ba;
+      }
+
+      .buske {
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: fill;
+        position: absolute;
       }
     </style>
   </head>
 
   <body>
     <section class="desktop">
-      <h1>The website only works on mobile</h1>
+      <h1>Webbsidan funkar enbart på mobil</h1>
+      <a href="https://vimeo.com/762643750"> Se videon </a>
+      <a href="https://soundcloud.com/oskar-hannu/skynda-hem-till-shabbaten"
+        >Lyssna på låten</a
+      >
     </section>
     <section class="parallax" id="parallax">
       <div class="parallax-group">
         <div class="parallax-layer layer layer1">
-          <img src="./assets/bg01.png" alt="" />
+          <img src="./assets/1.png" alt="" />
         </div>
         <div class="parallax-layer layer layer2">
-          <img src="./assets/bg02.png" alt="" />
+          <img src="./assets/2.png" alt="" />
         </div>
         <div class="parallax-layer layer layer3">
-          <img src="./assets/bg03.png" alt="" />
+          <img src="./assets/3.png" alt="" />
         </div>
         <div class="parallax-layer layer layer4">
-          <img src="./assets/bg04.PNG" alt="" />
+          <img src="./assets/4.png" alt="" />
         </div>
         <div class="parallax-layer layer layer5">
-          <img src="./assets/bg05.PNG" alt="" />
+          <img src="./assets/5.png" alt="" />
         </div>
         <div class="parallax-layer layer layer6">
           <img src="./assets/LOGO_BLACK.png" alt="" />
@@ -189,32 +255,53 @@
 
       <section class="videos">
         <video
-          src="./assets/shabbat1.mp4#t=0.1"
+          src="./assets/Sekvens1.mp4#t=0.01"
           webkit-playsinline
           playsinline
           class="video01"
           id="video"
         ></video>
+        <img
+          class="buske video02"
+          src="./assets/buske0.png"
+          alt=""
+          id="buske"
+        />
+        <img
+          class="buske video03"
+          src="./assets/buske1.PNG"
+          alt=""
+          id="buske"
+        />
+        <img
+          class="buske video04"
+          src="./assets/buske2.PNG"
+          alt=""
+          id="buske"
+        />
         <video
-          src="./assets/shabbat2.mp4#t=0.1"
+          src="./assets/Sekvens2.mp4#t=0.01"
           webkit-playsinline
           playsinline
-          class="video02"
+          class="video06"
           id="video"
         ></video>
         <video
-          src="./assets/Shabbat3.mp4#t=0.1"
+          src="./assets/Sekvens3.mp4#t=0.01"
           webkit-playsinline
           playsinline
-          class="video03"
+          class="video07"
           id="video"
         ></video>
-        <div class="restart video04" id="restart">
-          <h2 class="bold">
+        <div class="restart video08">
+          <button id="restart">
             Klicka för att börja<br />
-            om från början.<br />
-            Se video på vimeo
-          </h2>
+            om från början.
+          </button>
+          <a href="https://vimeo.com/762643750"> Se videon </a>
+          <a href="https://soundcloud.com/oskar-hannu/skynda-hem-till-shabbaten"
+            >Lyssna på låten</a
+          >
         </div>
       </section>
     </section>
@@ -223,10 +310,11 @@
   <script>
     let parallax = document.querySelector("#parallax");
     let videos = document.querySelectorAll("#video");
+    let buske = document.querySelectorAll("#buske");
 
     parallax.addEventListener("scroll", function (e) {
       let elem = e.currentTarget;
-      if (elem.scrollHeight - elem.scrollTop == window.innerHeight)
+      if (elem.scrollHeight - elem.scrollTop <= window.innerHeight)
         e.currentTarget.style.overflow = "hidden";
     });
 
@@ -237,6 +325,12 @@
 
     videos.forEach(function (vidBtn) {
       vidBtn.addEventListener("click", playVideo);
+    });
+
+    buske.forEach(function (bush) {
+      bush.addEventListener("click", function (el) {
+        el.srcElement.style.display = "none";
+      });
     });
 
     function playVideo(event) {
